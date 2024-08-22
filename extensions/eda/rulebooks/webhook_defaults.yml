@@ -5,6 +5,10 @@
     - ansible.eda.webhook:
   rules:
     - name: Webhook event
-      condition: event is not None
+      condition: event.payload.ping == "pong"
       action:
         none:
+    - name: Shutdown
+      condition: event.payload.shutdown is defined
+      action:
+        shutdown:
