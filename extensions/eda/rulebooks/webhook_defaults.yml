@@ -5,12 +5,7 @@
     - ansible.eda.webhook:
   rules:
     - name: Webhook event
-      condition: event.payload.ping == "pong"
+      condition: "i" in event.payload.payload
       action:
         debug:
           msg: "Webhook triggered!"
-
-    - name: Shutdown
-      condition: event.payload.shutdown is defined
-      action:
-        shutdown:
