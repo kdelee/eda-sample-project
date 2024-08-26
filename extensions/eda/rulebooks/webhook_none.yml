@@ -4,13 +4,13 @@
   sources:
     - ansible.eda.webhook:
   rules:
-    - name: Webhook event
+    - name: Webhook alive debug
       condition: event.payload.ping == "alive"
       action:
         debug:
           msg: "I'm alive!"
 
-    - name: Webhook event
+    - name: Webhook none action
       condition: event.payload.ping == "pong"
       action:
         none:
