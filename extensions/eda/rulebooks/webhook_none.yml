@@ -1,0 +1,21 @@
+---
+- name: Run a webhook listener service
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+  rules:
+    - name: Webhook event
+      condition: event.payload.ping == "alive"
+      action:
+        debug:
+          msg: "I'm alive!"
+
+    - name: Webhook event
+      condition: event.payload.ping == "pong"
+      action:
+        none:
+
+    - name: Shutdown
+      condition: event.payload.shutdown is defined
+      action:
+        shutdown:
